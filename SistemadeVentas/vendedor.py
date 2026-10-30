@@ -1,6 +1,9 @@
 # Esto se abre desde el archivo login.py, corre el codigo desde ahi
 
+from inventario import agregar_producto, editar_producto, guardar_productos
+
 def menu_vendedor(productos):
+
     while True:
         print("\n=== MENU VENDEDOR ===")
         print("1. Agregar producto")
@@ -11,34 +14,51 @@ def menu_vendedor(productos):
         opcion = input("Seleccione: ")
 
         if opcion == "1":
-            nombre = input("Nombre: ")
-            precio = float(input("Precio: "))
+            try:
+                nombre = input("Nombre: ")
+                precio = float(input("Precio: "))
 
-            productos.append({
-                "nombre": nombre,
-                "precio": precio
-            })
+                agregar_producto(productos, nombre, precio)
+                guardar_productos(productos)
 
-            print("Producto agregado.")
+                print("Producto agregado correctamente.")
+
+            except ValueError as error:
+                print("Error:", error)
 
         elif opcion == "2":
+            print("\n=== INVENTARIO ===")
+
             for i, p in enumerate(productos, 1):
                 print(i, p["nombre"], "- C$", p["precio"])
+
+            if len(productos) == 0:
+                print("Inventario vacío.")
 
         elif opcion == "3":
+            if len(productos) == 0:
+                print("No hay productos para editar.")
+                continue
+
             for i, p in enumerate(productos, 1):
                 print(i, p["nombre"], "- C$", p["precio"])
 
-            numero = int(input("Numero a editar: ")) - 1
+            try:
+                numero = int(input("Numero a editar: ")) - 1
 
-            if 0 <= numero < len(productos):
-                productos[numero]["nombre"] = input("Nuevo nombre: ")
-                productos[numero]["precio"] = float(input("Nuevo precio: "))
-                print("Producto editado.")
-            else:
-                print("Numero incorrecto.")
+                nombre = input("Nuevo nombre: ")
+                precio = float(input("Nuevo precio: "))
+
+                editar_producto(productos, numero, nombre, precio)
+                guardar_productos(productos)
+
+                print("Producto editado correctamente.")
+
+            except ValueError as error:
+                print("Error:", error)
 
         elif opcion == "4":
+            print("Cerrando sesion...")
             break
 
         else:

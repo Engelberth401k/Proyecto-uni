@@ -1,8 +1,9 @@
-
 from vendedor import menu_vendedor
 from comprador import menu_comprador
+from inventario import cargar_productos
 
-# Cuentas predeterminadas, las cuentas usa el formato nombre : contraseña
+
+# Cuentas predeterminadas
 vendedores = {
     "vendedor1": "1234",
     "vendedor2": "5678",
@@ -15,15 +16,11 @@ compradores = {
     "comprador3": "3333"
 }
 
-# Inventario compartido entre el comprador y el vendedor
-productos = [
-    {"nombre": "Arroz", "precio": 25},
-    {"nombre": "Leche", "precio": 40},
-    {"nombre": "Pan", "precio": 15},
-    {"nombre": "Aceite", "precio": 65}
-]
+# Cargar inventario
+productos = cargar_productos()
 
-# Seleccionar el tipo de usuario que ingresara
+
+# Seleccionar usuario
 print("=== SISTEMA DE VENTAS ===")
 print("1. Ingresar como vendedor")
 print("2. Ingresar como comprador")
@@ -39,8 +36,9 @@ elif opcion == "2":
     tipo = "comprador"
 
 else:
-    print("Opcion no valida.")
+    print("Opcion incorrecta.")
     exit()
+
 
 # Inicio de sesion
 print("\n=== INICIO DE SESION ===")
@@ -48,7 +46,8 @@ print("\n=== INICIO DE SESION ===")
 usuario = input("Nombre de usuario: ")
 contrasena = input("Contrasena: ")
 
-# Verificar si la informacion es correcta
+
+# Verificar credenciales
 if usuario in cuentas and cuentas[usuario] == contrasena:
 
     print("\nInicio de sesion exitoso.")

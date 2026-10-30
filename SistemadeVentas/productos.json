@@ -1,0 +1,22 @@
+[
+    {
+        "nombre": "Arroz",
+        "precio": 25
+    },
+    {
+        "nombre": "Leche",
+        "precio": 40
+    },
+    {
+        "nombre": "Pan",
+        "precio": 15
+    },
+    {
+        "nombre": "Aceite",
+        "precio": 65
+    },
+    {
+        "nombre": "Frijoles",
+        "precio": 30.0
+    }
+]
